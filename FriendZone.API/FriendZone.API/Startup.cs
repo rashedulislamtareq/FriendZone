@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FriendZone.API.Data;
+using FriendZone.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,10 +27,22 @@ namespace FriendZone.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<FriendZoneDbCondext>(op => 
+            services.AddDbContext<FriendZoneDbCondext>(op =>
                 op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //Adding Cors Origin Policy
+            services.AddCors(op =>
+            {
+                op.AddPolicy("Cors", policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
+            services.Configure<Application>(Configuration.GetSection("Application"));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +52,8 @@ namespace FriendZone.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("Cors");
 
             app.UseMvc();
         }
