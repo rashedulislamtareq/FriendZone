@@ -1,4 +1,5 @@
 ﻿using FriendZone.API.Controllers;
+using FriendZone.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,6 @@ namespace FriendZone.API.Data
 
         }
 
-        public DbSet<Value> Values { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
