@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FriendZone.API</name>
+    </assembly>
+    <members>
+        <member name="M:FriendZone.API.Data.AuthRepository.Login(System.String,System.String)">
+            <summary>
+            Login
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FriendZone.API.Data.AuthRepository.Register(FriendZone.API.Models.User,System.String)">
+            <summary>
+            Register
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FriendZone.API.Data.AuthRepository.UserExists(System.String)">
+            <summary>
+            UserExists
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FriendZone.API.Data.AuthRepository.CreatePasswordHash(System.String,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            CreatePasswordHash
+            </summary>
+            <param name="password"></param>
+            <param name="passwordHash"></param>
+            <param name="passwordSalt"></param>
+        </member>
+        <member name="M:FriendZone.API.Data.AuthRepository.VerifyPasswordHash(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            VerifyPasswordHash
+            </summary>
+            <param name="password"></param>
+            <param name="passwordHash"></param>
+            <param name="passwordSalt"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

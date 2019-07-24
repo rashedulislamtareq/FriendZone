@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace FriendZone.API
 {
@@ -62,6 +63,14 @@ namespace FriendZone.API
                     };
                 });
 
+            //Add Swagger UI
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new Info() { Title = "Core API", Description = "Swagger Core API" });
+                var xmlPath = System.AppDomain.CurrentDomain.BaseDirectory + "FriendZone.API.xml";
+                x.IncludeXmlComments(xmlPath);
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +84,13 @@ namespace FriendZone.API
             app.UseCors("Cors");
             app.UseAuthentication();
             app.UseMvc();
+
+            //Enable Swagger UI
+            app.UseSwagger();
+            app.UseSwaggerUI(x =>
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Core API");
+            });
         }
     }
 }
